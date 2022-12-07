@@ -10,3 +10,19 @@ export const loginCall = async (userCredential, dispatch) => {
   }
 };
 
+export const constellationCall = async (constellation) => {
+  try {
+    const today = await axios.post(
+      `https://aztro.sameerkumar.website?sign=${constellation}&day=today`
+    );
+    const yesterday = await axios.post(
+      `https://aztro.sameerkumar.website?sign=${constellation}&day=yesterday`
+    );
+    return {
+      today: today.data.description,
+      yesterday: yesterday.data.description,
+    };
+  } catch (err) {
+    return err;
+  }
+};
