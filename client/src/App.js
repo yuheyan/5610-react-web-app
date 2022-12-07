@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Users from "./pages/users";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/profile/:username">
           <Profile />
+        </Route>
+        <Route path="/users">
+          <Users />
         </Route>
       </Switch>
     </Router>

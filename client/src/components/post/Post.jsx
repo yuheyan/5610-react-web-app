@@ -1,5 +1,5 @@
 import "./post.css";
-import { MoreVert } from "@material-ui/icons";
+import { DeleteForever } from "@material-ui/icons";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
@@ -32,6 +32,11 @@ export default function Post({ post }) {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
+
+  const deleteHandler = () => {
+
+  }
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -51,9 +56,9 @@ export default function Post({ post }) {
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
-          <div className="postTopRight">
-            <MoreVert />
-          </div>
+          {!user.isAdmin && (<div className="postTopRight">
+            <DeleteForever onClick={likeHandler}/>
+          </div>)}
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
