@@ -9,6 +9,9 @@ export default function Register() {
   const password = useRef();
   const passwordAgain = useRef();
   const history = useHistory();
+  const isFree = useRef();
+  const isVip = useRef();
+  const isAdmin = useRef();
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -19,6 +22,11 @@ export default function Register() {
         username: username.current.value,
         email: email.current.value,
         password: password.current.value,
+        isFree: isFree.current.checked,
+        isVip: isVip.current.checked,
+        isAdmin: isAdmin.current.checked,
+
+
       };
       try {
         await axios.post("/auth/register", user);
@@ -68,10 +76,19 @@ export default function Register() {
               className="loginInput"
               type="password"
             />
+            <div>
+              <input type="radio" id="free_user" name="user_role" value="free" ref={isFree} defaultChecked/>
+              <label htmlFor="free_user">Free User</label><br/>
+              <input type="radio" id="vip_user" name="user_role" value="vip" ref={isVip}/>
+              <label htmlFor="vip_user">VIP User</label><br/>
+              <input type="radio" id="admin" name="user_role" value="admin" ref={isAdmin}/>
+              <label htmlFor="admin">Administer</label><br/>
+            </div>
+            <br/>
             <button className="loginButton" type="submit">
               Sign Up
             </button>
-            <button className="loginRegisterButton">Log into Account</button>
+            {/*<button className="loginRegisterButton">Log into Account</button>*/}
           </form>
         </div>
       </div>

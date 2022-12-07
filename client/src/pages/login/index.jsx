@@ -43,6 +43,7 @@ export default function Login() {
               className="loginInput"
               ref={password}
             />
+
             <button className="loginButton" type="submit" disabled={isFetching}>
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />
@@ -51,13 +52,13 @@ export default function Login() {
               )}
             </button>
             <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
-              {isFetching ? (
-                <CircularProgress color="white" size="20px" />
-              ) : (
-                "Create a New Account"
-              )}
-            </button>
+            {/*<button className="loginRegisterButton">*/}
+            {/*  {isFetching ? (*/}
+            {/*    <CircularProgress color="white" size="20px" />*/}
+            {/*  ) : (*/}
+            {/*    "Create a New Account"*/}
+            {/*  )}*/}
+            {/*</button>*/}
           </form>
         </div>
       </div>
