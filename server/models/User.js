@@ -68,6 +68,10 @@ const UserSchema = new mongoose.Schema(
       enum: [1, 2, 3],
     },
     //add new fields here
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Prefer not to respond"]
+    },
   },
   { timestamps: true }
 );
