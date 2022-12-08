@@ -34,7 +34,12 @@ export default function Post({ post }) {
   };
 
   const deleteHandler = () => {
-
+    try {
+      axios.delete("/posts/" + post._id);
+      window.location.reload();
+    } catch (err) {
+      console.log("test1", err)
+    }
   }
 
   return (
@@ -56,8 +61,8 @@ export default function Post({ post }) {
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
-          {!user.isAdmin && (<div className="postTopRight">
-            <DeleteForever onClick={likeHandler}/>
+          {user.isAdmin && (<div className="postTopRight">
+            <DeleteForever onClick={deleteHandler}/>
           </div>)}
         </div>
         <div className="postCenter">

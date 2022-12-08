@@ -5,3 +5,23 @@
 .usersWrapper{
     padding: 20px;
 }
+
+.table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #1a77f2;
+    color: white;
+}
