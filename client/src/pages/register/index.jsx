@@ -37,6 +37,10 @@ export default function Register() {
     }
   };
 
+  const handleClickLogin = async (e) => {
+    history.push("/login");
+  }
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -88,7 +92,7 @@ export default function Register() {
             <button className="loginButton" type="submit">
               Sign Up
             </button>
-            {/*<button className="loginRegisterButton">Log into Account</button>*/}
+            <button onClick={handleClickLogin} className="loginRegisterButton">Go to Log In</button>
           </form>
         </div>
       </div>
