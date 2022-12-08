@@ -37,6 +37,10 @@
   justify-content: center;
 }
 
+.generalInfo {
+  justify-content:left
+}
+
 .profileInfoName {
   font-size: 24px;
 }

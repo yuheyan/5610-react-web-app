@@ -1,7 +1,5 @@
 import "./edit-profile.css";
 import Topbar from "../../components/topbar/Topbar";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Feed from "../../components/feed/Feed";
 import { useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import { Label } from "@material-ui/icons";
@@ -17,10 +15,14 @@ export default function EditProfile() {
   const usernameInput = useRef();
   const emailInput = useRef();
   const passwordInput = useRef();
+  const genderInput = useRef();
 
   // show the initial value of the user information
   useEffect(() => {
     usernameInput.current.value = user.username;
+    emailInput.current.value = user.email;
+    passwordInput.current.value = user.password;
+    genderInput.current.value = user.gender;
   }, [user]);
 
 
@@ -32,6 +34,7 @@ export default function EditProfile() {
         username:usernameInput.current.value,
         email:emailInput.current.value,
         passwordInput:passwordInput.current.value,
+        genderInput:genderInput.current.value,
       });
   }
 
@@ -41,6 +44,7 @@ export default function EditProfile() {
     <>
       <Topbar />
       <div className="edit-profile">
+        <h1>Replace Side bar with Ads Location</h1>
         <div className="edit-profileRight">
           <div className="edit-profileRightTop">
             <div className="edit-profileCover">
@@ -64,39 +68,50 @@ export default function EditProfile() {
 
           </div>
           <div className="edit-profileRightBottom">
-            <div>
+            <div className="edit-profile-form">
 
-              <label>Update your username:
-                <input 
-                  type="text" 
-                  // link the input field to ref
-                  ref={usernameInput}
-                />
-              </label>
-              <input type="submit" onClick={handleSubmit} />
-              <br></br>
-              <br></br>
+              <form onSubmit={handleSubmit}>
+                <label>Update your username:
+                  <input 
+                    type="text" 
+                    // link the input field to ref
+                    ref={usernameInput}
+                  />
+                </label>
 
-              <label>Update your email:
-                <input 
-                  type="text" 
-                  ref={emailInput}
-                />
-              </label>
-              <input type="submit" onClick={handleSubmit} />
-              <br></br>
-              <br></br>
-              <label>Update your password:
-                <input 
-                  type="text" 
-                  ref={passwordInput}
-                />
-              </label>
-              <input type="submit" onClick={handleSubmit} />
-              <br></br>
-              <br></br>
+                <br></br>
+                <br></br>
 
+                <label>Update your email:
+                  <input 
+                    type="text" 
+                    ref={emailInput}
+                  />
+                </label>
 
+                <br></br>
+                <br></br>
+                <label>Update your password:
+                  <input 
+                    type="text" 
+                    ref={passwordInput}
+                  />
+                </label>
+                <br></br>
+                <br></br>
+
+                <label for="gender"> Update your gender
+                  <select name="gener" id="gener" ref={genderInput}>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="transgender">Transgender</option>
+                    <option value="hide">Prefer not to respond</option>
+                  </select>
+                </label>
+                <br></br>
+                <br></br>
+                <input type="submit" value="Submit" />
+              </form>
             </div>
           </div>
         </div>

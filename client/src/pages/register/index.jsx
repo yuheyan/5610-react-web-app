@@ -19,6 +19,8 @@ export default function Register() {
         username: username.current.value,
         email: email.current.value,
         password: password.current.value,
+        // add gender default value when registering
+        
       };
       try {
         await axios.post("/auth/register", user);

@@ -27,6 +27,7 @@ export default function Profile() {
     <>
       <Topbar />
       <div className="profile">
+      <h1>Replace Side bar with Ads Location</h1>
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
@@ -50,12 +51,21 @@ export default function Profile() {
             <div className="profileInfo">
               <h4 className="profileInfoName">user name: {user.username}</h4>
               <button onClick={() => history.push(`/edit-profile/${username}`)}>Edit Profile</button>
-              <span className="profileInfoDesc">Unknown State: user.desc {user.desc}</span>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <h4>General Information</h4>
+              <br></br>
+              <br></br>
+              <ul className="generalInfo"  style ={{listStyle:'none'}}>
+                <li>Email: {user.email}</li>
+                <li>Gender: </li>
+                <li>More information to be displayed</li>
+              </ul>
             </div>
           </div>
-          <div className="profileRightBottom">
-            <h1> original Feed component place</h1>
-          </div>
+          
         </div>
       </div>
     </>
