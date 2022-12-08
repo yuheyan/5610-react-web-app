@@ -61,7 +61,7 @@ export default function Post({ post }) {
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
-          {user.isAdmin && (<div className="postTopRight">
+          {!user.isAdmin && (<div className="postTopRight">
             <DeleteForever onClick={deleteHandler}/>
           </div>)}
         </div>
