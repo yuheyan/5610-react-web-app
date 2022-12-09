@@ -57,15 +57,13 @@ router.get("/", async (req, res) => {
 
 //get all users
 router.get("/allUsers", async (req, res) => {
-  const userId = req.query.userId;
-  const username = req.query.username;
-    const user = User.find({}, function (err, docs) {
-      if(!err) {
-        res.status(200).json(docs);
-      } else {
-        res.status(500).json(err);
-      }
-    });
+  User.find({}, function (err, docs) {
+    if (!err) {
+      res.status(200).json(docs);
+    } else {
+      res.status(500).json(err);
+    }
+  });
 });
 
 //get friends
@@ -82,7 +80,7 @@ router.get("/friends/:userId", async (req, res) => {
       const { _id, username, profilePicture } = friend;
       friendList.push({ _id, username, profilePicture });
     });
-    res.status(200).json(friendList)
+    res.status(200).json(friendList);
   } catch (err) {
     res.status(500).json(err);
   }
