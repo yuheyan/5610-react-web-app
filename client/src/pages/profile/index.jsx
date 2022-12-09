@@ -49,10 +49,8 @@ export default function Profile() {
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">user name: {user.username}</h4>
+              <h4 className="profileName">user name: {user.username}</h4>
               <button onClick={() => history.push(`/edit-profile/${username}`)}>Edit Profile</button>
-              <br></br>
-              <br></br>
               <br></br>
               <br></br>
               <h4>General Information</h4>
@@ -72,6 +70,59 @@ export default function Profile() {
   );
   
 }
+
+
+
+// return (
+//   <>
+//     <Topbar />
+//     <div className="profile">
+//     <h1>Replace Side bar with Ads Location</h1>
+//       <div className="profileRight">
+//         <div className="profileRightTop">
+//           <div className="profileCover">
+//             <img
+//               className="profileCoverImg"
+//               src={
+//                 PF + "person/star-sign-cover.png"
+//               }
+//               alt="profileCover image not found"
+//             />
+//             <img
+//               className="profileUserImg"
+//               src={
+//                 user.profilePicture
+//                   ? PF + user.profilePicture
+//                   : PF + "person/noAvatar.png"
+//               }
+//               alt="profileUser image not found"
+//             />
+//           </div>
+//           <div className="profileInfo">
+//             <h4 className="profileName">user name: {user.username}</h4>
+//             <button onClick={() => history.push(`/edit-profile/${username}`)}>Edit Profile</button>
+//             <br></br>
+//             <br></br>
+//             <br></br>
+//             <br></br>
+//             <h4>General Information</h4>
+//             <br></br>
+//             <br></br>
+//             <ul className="generalInfo"  style ={{listStyle:'none'}}>
+//               <li>Email: {user.email}</li>
+//               <li>Gender: </li>
+//               <li>More information to be displayed</li>
+//             </ul>
+//           </div>
+//         </div>
+        
+//       </div>
+//     </div>
+//   </>
+// );
+
+
+
 
 
 // export default function Profile() {
