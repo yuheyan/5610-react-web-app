@@ -26,3 +26,12 @@ export const constellationCall = async (constellation) => {
     return err;
   }
 };
+//get all the users
+export const fetchAllUsers = async () => {
+  try {
+    const res = await axios.get("/Users/allUsers");
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+};

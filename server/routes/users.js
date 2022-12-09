@@ -28,7 +28,7 @@ router.put("/:id", async (req, res) => {
 
 //delete user
 router.delete("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
+  if (!req.body.isAdmin) {
     try {
       await User.findByIdAndDelete(req.params.id);
       res.status(200).json("Account has been deleted");
@@ -36,7 +36,7 @@ router.delete("/:id", async (req, res) => {
       return res.status(500).json(err);
     }
   } else {
-    return res.status(403).json("You can delete only your account!");
+    return res.status(403).json("You are not an admin!");
   }
 });
 
@@ -55,6 +55,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+//get all users
+router.get("/allUsers", async (req, res) => {
+  User.find({}, function (err, docs) {
+    if (!err) {
+      res.status(200).json(docs);
+    } else {
+      res.status(500).json(err);
+    }
+  });
+});
+
 //get friends
 router.get("/friends/:userId", async (req, res) => {
   try {
@@ -69,7 +80,7 @@ router.get("/friends/:userId", async (req, res) => {
       const { _id, username, profilePicture } = friend;
       friendList.push({ _id, username, profilePicture });
     });
-    res.status(200).json(friendList)
+    res.status(200).json(friendList);
   } catch (err) {
     res.status(500).json(err);
   }
