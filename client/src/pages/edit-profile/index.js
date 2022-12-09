@@ -1,11 +1,11 @@
 import "./edit-profile.css";
 import Topbar from "../../components/topbar/Topbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import { useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import { Label } from "@material-ui/icons";
-import {updateUser} from "../../apiCalls";
+import { updateUser } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
-
 
 export default function EditProfile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -25,18 +25,17 @@ export default function EditProfile() {
     genderInput.current.value = user.gender;
   }, [user]);
 
-
   // update the user information on click
   const handleSubmit = (event) => {
     event.preventDefault();
     updateUser(user._id, {
-        userId:user._id,
-        username:usernameInput.current.value,
-        email:emailInput.current.value,
-        passwordInput:passwordInput.current.value,
-        genderInput:genderInput.current.value,
-      });
-  }
+      userId: user._id,
+      username: usernameInput.current.value,
+      email: emailInput.current.value,
+      passwordInput: passwordInput.current.value,
+      genderInput: genderInput.current.value,
+    });
+  };
 
   // console.log(username);
 
@@ -44,15 +43,13 @@ export default function EditProfile() {
     <>
       <Topbar />
       <div className="edit-profile">
-        <h1>Replace Side bar with Ads Location</h1>
+        <Sidebar />
         <div className="edit-profileRight">
           <div className="edit-profileRightTop">
             <div className="edit-profileCover">
               <img
                 className="edit-profileCoverImg"
-                src={
-                  PF + "person/star-sign-cover.png"
-                }
+                src={PF + "person/star-sign-cover.png"}
                 alt="profileCover image not found"
               />
               <img
@@ -65,15 +62,14 @@ export default function EditProfile() {
                 alt="profileUser image not found"
               />
             </div>
-
           </div>
           <div className="edit-profileRightBottom">
             <div className="edit-profile-form">
-
               <form onSubmit={handleSubmit}>
-                <label>Update your username:
-                  <input 
-                    type="text" 
+                <label>
+                  Update your username:
+                  <input
+                    type="text"
                     // link the input field to ref
                     ref={usernameInput}
                   />
@@ -82,25 +78,23 @@ export default function EditProfile() {
                 <br></br>
                 <br></br>
 
-                <label>Update your email:
-                  <input 
-                    type="text" 
-                    ref={emailInput}
-                  />
+                <label>
+                  Update your email:
+                  <input type="text" ref={emailInput} />
                 </label>
 
                 <br></br>
                 <br></br>
-                <label>Update your password:
-                  <input 
-                    type="text" 
-                    ref={passwordInput}
-                  />
+                <label>
+                  Update your password:
+                  <input type="text" ref={passwordInput} />
                 </label>
                 <br></br>
                 <br></br>
 
-                <label for="gender"> Update your gender
+                <label for="gender">
+                  {" "}
+                  Update your gender
                   <select name="gener" id="gener" ref={genderInput}>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -118,5 +112,4 @@ export default function EditProfile() {
       </div>
     </>
   );
-  
 }

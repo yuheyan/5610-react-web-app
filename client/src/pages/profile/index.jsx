@@ -20,22 +20,19 @@ export default function Profile() {
     fetchUser();
   }, [username]);
 
-
   const history = useHistory();
 
   return (
     <>
       <Topbar />
       <div className="profile">
-      <h1>Replace Side bar with Ads Location</h1>
+        <Sidebar />
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
               <img
                 className="profileCoverImg"
-                src={
-                  PF + "person/star-sign-cover.png"
-                }
+                src={PF + "person/star-sign-cover.png"}
                 alt="profileCover image not found"
               />
               <img
@@ -50,7 +47,9 @@ export default function Profile() {
             </div>
             <div className="profileInfo">
               <h4 className="profileInfoName">user name: {user.username}</h4>
-              <button onClick={() => history.push(`/edit-profile/${username}`)}>Edit Profile</button>
+              <button onClick={() => history.push(`/edit-profile/${username}`)}>
+                Edit Profile
+              </button>
               <br></br>
               <br></br>
               <br></br>
@@ -58,21 +57,18 @@ export default function Profile() {
               <h4>General Information</h4>
               <br></br>
               <br></br>
-              <ul className="generalInfo"  style ={{listStyle:'none'}}>
+              <ul className="generalInfo" style={{ listStyle: "none" }}>
                 <li>Email: {user.email}</li>
                 <li>Gender: </li>
                 <li>More information to be displayed</li>
               </ul>
             </div>
           </div>
-          
         </div>
       </div>
     </>
   );
-  
 }
-
 
 // export default function Profile() {
 //   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -126,5 +122,5 @@ export default function Profile() {
 //       </div>
 //     </>
 //   );
-  
+
 // }
