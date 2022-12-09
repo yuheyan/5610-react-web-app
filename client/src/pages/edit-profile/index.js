@@ -43,83 +43,6 @@ export default function EditProfile() {
     <>
       <Topbar />
       <div className="main-content">
-        {/* Top navbar */}
-        <nav
-          className="navbar navbar-top navbar-expand-md navbar-dark"
-          id="navbar-main"
-        >
-          <div className="container-fluid">
-            {/* Brand */}
-
-
-            {/* Form */}
-            <form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-              <div className="form-group mb-0">
-                <div className="input-group input-group-alternative">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <i className="fas fa-search" />
-                    </span>
-                  </div>
-                  <input className="form-control" placeholder="Search" type="text" />
-                </div>
-              </div>
-            </form>
-            {/* User */}
-            <ul className="navbar-nav align-items-center d-none d-md-flex">
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link pr-0"
-                  href="#"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <div className="media align-items-center">
-                    <span className="avatar avatar-sm rounded-circle">
-                      <img
-                        alt="Image placeholder"
-                        src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
-                      />
-                    </span>
-                    <div className="media-body ml-2 d-none d-lg-block">
-                      <span className="mb-0 text-sm  font-weight-bold">
-                        Jessica Jones
-                      </span>
-                    </div>
-                  </div>
-                </a>
-                <div className="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                  <div className=" dropdown-header noti-title">
-                    <h6 className="text-overflow m-0">Welcome!</h6>
-                  </div>
-                  <a href="../examples/profile.html" className="dropdown-item">
-                    <i className="ni ni-single-02" />
-                    <span>My profile</span>
-                  </a>
-                  <a href="../examples/profile.html" className="dropdown-item">
-                    <i className="ni ni-settings-gear-65" />
-                    <span>Settings</span>
-                  </a>
-                  <a href="../examples/profile.html" className="dropdown-item">
-                    <i className="ni ni-calendar-grid-58" />
-                    <span>Activity</span>
-                  </a>
-                  <a href="../examples/profile.html" className="dropdown-item">
-                    <i className="ni ni-support-16" />
-                    <span>Support</span>
-                  </a>
-                  <div className="dropdown-divider" />
-                  <a href="#!" className="dropdown-item">
-                    <i className="ni ni-user-run" />
-                    <span>Logout</span>
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
         {/* Header */}
         <div
           className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
@@ -164,10 +87,7 @@ export default function EditProfile() {
                 <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div className="d-flex justify-content-between">
                     <a href="#" className="btn btn-sm btn-info mr-4">
-                      Connect
-                    </a>
-                    <a href="#" className="btn btn-sm btn-default float-right">
-                      Message
+                      follow & unfollow
                     </a>
                   </div>
                 </div>
@@ -177,41 +97,40 @@ export default function EditProfile() {
                       <div className="card-profile-stats d-flex justify-content-center mt-md-5">
                         <div>
                           <span className="heading">22</span>
-                          <span className="description">Friends</span>
+                          <span className="description">Followers</span>
                         </div>
                         <div>
                           <span className="heading">10</span>
-                          <span className="description">Photos</span>
+                          <span className="description">Following</span>
                         </div>
                         <div>
-                          <span className="heading">89</span>
-                          <span className="description">Comments</span>
+                          <span className="heading">100</span>
+                          <span className="description">Reviews</span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="text-center">
                     <h3>
-                      Jessica Jones<span className="font-weight-light">, 27</span>
+                      preferred name or username<span className="font-weight-light">, Age</span>
                     </h3>
                     <div className="h5 font-weight-300">
                       <i className="ni location_pin mr-2" />
-                      Bucharest, Romania
+                      City, State/Country
                     </div>
                     <div className="h5 mt-4">
                       <i className="ni business_briefcase-24 mr-2" />
-                      Solution Manager - Creative Tim Officer
+                      Job title
                     </div>
                     <div>
                       <i className="ni education_hat mr-2" />
-                      University of Computer Science
+                      School Alumni
                     </div>
                     <hr className="my-4" />
                     <p>
-                      Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick
-                      Murphy — writes, performs and records all of his own music.
+                      About me information and wait to be updated
                     </p>
-                    <a href="#">Show more</a>
+
                   </div>
                 </div>
               </div>
@@ -223,11 +142,7 @@ export default function EditProfile() {
                     <div className="col-8">
                       <h3 className="mb-0">My account</h3>
                     </div>
-                    <div className="col-4 text-right">
-                      <a href="#!" className="btn btn-sm btn-primary">
-                        Settings
-                      </a>
-                    </div>
+                    
                   </div>
                 </div>
                 <div className="card-body">
@@ -397,7 +312,7 @@ export default function EditProfile() {
                           className="form-control form-control-alternative"
                           placeholder="A few words about you ..."
                           defaultValue={
-                            "A beautiful Dashboard for Bootstrap 4. It is Free and Open Source."
+                            "Write something interesting about you:)."
                           }
                         />
                       </div>
@@ -420,7 +335,8 @@ export default function EditProfile() {
 
 
 
-
+// HTML&CSS source: https://www.creative-tim.com/bits/bootstrap/user-profile-page-argon-dashboard
+// credit to: Creative Tim
 
 
 
