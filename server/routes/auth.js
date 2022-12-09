@@ -14,6 +14,9 @@ router.post("/register", async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
+      isFree: req.body.isFree,
+      isAdmin: req.body.isAdmin,
+      isVip:req.body.isVip,
     });
 
     //save user and respond
@@ -28,10 +31,16 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    !user && res.status(404).json("user not found");
+    if (!user){
+      res.status(404).json("user not found");
+      return;
+    }
 
     const validPassword = await bcrypt.compare(req.body.password, user.password)
-    !validPassword && res.status(400).json("wrong password")
+    if (!validPassword){
+      res.status(400).json("wrong password")
+      return;
+    }
 
     res.status(200).json(user)
   } catch (err) {

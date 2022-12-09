@@ -36,9 +36,20 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+      isFree:{
+          type: Boolean,
+          default: true,
+          required:true,
+      },
+      isVip:{
+          type: Boolean,
+          default: false,
+          required:true,
+      },
     isAdmin: {
       type: Boolean,
       default: false,
+        required:true,
     },
     desc: {
       type: String,
