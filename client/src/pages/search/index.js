@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import Topbar from "../../components/topbar/Topbar";

@@ -1,20 +1,14 @@
 import "./sidebar.css";
-import {
-  RssFeed,
-  Chat,
-  PlayCircleFilledOutlined,
-  Group,
-  Bookmark,
-  HelpOutline,
-  WorkOutline,
-  Event,
-  School,
-} from "@material-ui/icons";
+import { RssFeed, Chat, SupervisorAccount, Add } from "@material-ui/icons";
 import React, { useCallback } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
+import { Hidden } from "@material-ui/core";
 
 export default function Sidebar() {
   const history = useHistory();
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="sidebar">
@@ -35,14 +29,23 @@ export default function Sidebar() {
             <span className="sidebarListItemText">Search</span>
           </li>
           <li
-            onClick={useCallback(() => history.push("/admin"), [history])}
+            onClick={useCallback(() => history.push("/post"), [history])}
             className="sidebarListItem"
           >
-            <PlayCircleFilledOutlined className="sidebarIcon" />
+            <Add className="sidebarIcon" />
+            <span className="sidebarListItemText">Post</span>
+          </li>
+          <li
+            onClick={useCallback(() => history.push("/admin"), [history])}
+            className="sidebarListItem"
+            hidden={!user.isAdmin}
+          >
+            <SupervisorAccount className="sidebarIcon" />
             <span className="sidebarListItemText">Admin</span>
           </li>
         </ul>
         <hr className="sidebarHr" />
+        {user.isFree ? <label>ad fore free user</label> : ""}
       </div>
     </div>
   );

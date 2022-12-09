@@ -1,9 +1,10 @@
-import Home from "./pages/home";
+import Post from "./pages/post";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Register from "./pages/register";
 import Search from "./pages/search";
 import EditProfile from "./pages/edit-profile";
+import Home from "./pages/home";
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,6 +30,9 @@ function App() {
         </Route>
         <Route path="/search">
           <Search />
+        </Route>
+        <Route path="/post">
+          <Post />
         </Route>
         <Route path="/profile/:username">
           <Profile />

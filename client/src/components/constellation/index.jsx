@@ -12,10 +12,16 @@ export default function ({ constellation }) {
     constellationCall(constellation).then((res) => {
       setDate(res);
     });
-  }, []);
+  }, [constellation]);
 
   return (
-    <div class="container">
+    <div
+      className="container"
+      style={{ paddingLeft: "30px", paddingRight: "30px", paddingTop: "10px" }}
+    >
+      <div class="row">
+        <h1>Daily horoscopes for {constellation}</h1>
+      </div>
       <div class="row">
         <div class="col-sm">
           <img
