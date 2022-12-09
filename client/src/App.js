@@ -3,6 +3,7 @@ import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Register from "./pages/register";
 import Search from "./pages/search";
+import EditProfile from "./pages/edit-profile";
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,6 +32,9 @@ function App() {
         </Route>
         <Route path="/profile/:username">
           <Profile />
+        </Route>
+        <Route path="/edit-profile/:username">
+          <EditProfile />
         </Route>
         <Route path="/admin">
           <Users />

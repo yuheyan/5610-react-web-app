@@ -25,8 +25,6 @@ export default function Register() {
         isFree: isFree.current.checked,
         isVip: isVip.current.checked,
         isAdmin: isAdmin.current.checked,
-
-
       };
       try {
         await axios.post("/auth/register", user);
@@ -39,7 +37,7 @@ export default function Register() {
 
   const handleClickLogin = async (e) => {
     history.push("/login");
-  }
+  };
 
   return (
     <div className="login">
@@ -81,18 +79,42 @@ export default function Register() {
               type="password"
             />
             <div>
-              <input type="radio" id="free_user" name="user_role" value="free" ref={isFree} defaultChecked/>
-              <label htmlFor="free_user">Free User</label><br/>
-              <input type="radio" id="vip_user" name="user_role" value="vip" ref={isVip}/>
-              <label htmlFor="vip_user">VIP User</label><br/>
-              <input type="radio" id="admin" name="user_role" value="admin" ref={isAdmin}/>
-              <label htmlFor="admin">Administer</label><br/>
+              <input
+                type="radio"
+                id="free_user"
+                name="user_role"
+                value="free"
+                ref={isFree}
+                defaultChecked
+              />
+              <label htmlFor="free_user">Free User</label>
+              <br />
+              <input
+                type="radio"
+                id="vip_user"
+                name="user_role"
+                value="vip"
+                ref={isVip}
+              />
+              <label htmlFor="vip_user">VIP User</label>
+              <br />
+              <input
+                type="radio"
+                id="admin"
+                name="user_role"
+                value="admin"
+                ref={isAdmin}
+              />
+              <label htmlFor="admin">Administer</label>
+              <br />
             </div>
-            <br/>
+            <br />
             <button className="loginButton" type="submit">
               Sign Up
             </button>
-            <button onClick={handleClickLogin} className="loginRegisterButton">Go to Log In</button>
+            <button onClick={handleClickLogin} className="loginRegisterButton">
+              Go to Log In
+            </button>
           </form>
         </div>
       </div>
