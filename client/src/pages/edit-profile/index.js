@@ -2,11 +2,10 @@ import "./edit-profile.css";
 import Topbar from "../../components/topbar/Topbar";
 import { useContext, useEffect, useRef } from "react";
 import axios from "axios";
-import { Label, SettingsInputAntennaTwoTone } from "@material-ui/icons";
+// import { Label, SettingsInputAntennaTwoTone } from "@material-ui/icons";
 import {updateUser} from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";{}
 
 
 export default function EditProfile() {
@@ -20,15 +19,13 @@ export default function EditProfile() {
   // const genderInput = useRef();
 
   // show the initial value of the user information
+  
   // useEffect(() => {
   //   usernameInput.current.value = user.username;
   //   emailInput.current.value = user.email;
   //   passwordInput.current.value = user.password;
   //   genderInput.current.value = user.gender;
   // }, [user]);
-
-
-  const history = useHistory();
 
 
   // update the user information on click
@@ -335,16 +332,8 @@ export default function EditProfile() {
 
 
 
-
-
 // HTML&CSS source: https://www.creative-tim.com/bits/bootstrap/user-profile-page-argon-dashboard
 // credit to: Creative Tim
-
-
-
-
-
-
 
 
 // before styling, old code
