@@ -2,9 +2,11 @@ import "./edit-profile.css";
 import Topbar from "../../components/topbar/Topbar";
 import { useContext, useEffect, useRef } from "react";
 import axios from "axios";
-import { Label } from "@material-ui/icons";
+import { Label, SettingsInputAntennaTwoTone } from "@material-ui/icons";
 import {updateUser} from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";{}
 
 
 export default function EditProfile() {
@@ -14,8 +16,8 @@ export default function EditProfile() {
   //create new input field ref
   const usernameInput = useRef();
   const emailInput = useRef();
-  const passwordInput = useRef();
-  const genderInput = useRef();
+  // const passwordInput = useRef();
+  // const genderInput = useRef();
 
   // show the initial value of the user information
   // useEffect(() => {
@@ -26,9 +28,13 @@ export default function EditProfile() {
   // }, [user]);
 
 
+  const history = useHistory();
+
+
   // update the user information on click
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     updateUser(user._id, {
         userId:user._id,
         username:usernameInput.current.value,
@@ -77,7 +83,9 @@ export default function EditProfile() {
                     <div className="card-profile-image">
                       <a href="#">
                         <img
-                          src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
+                          src={user.profilePicture
+                                             ? PF + user.profilePicture
+                                             : PF + "person/noAvatar.png"}
                           className="rounded-circle"
                         />
                       </a>
@@ -118,14 +126,7 @@ export default function EditProfile() {
                       <i className="ni location_pin mr-2" />
                       City, State/Country
                     </div>
-                    <div className="h5 mt-4">
-                      <i className="ni business_briefcase-24 mr-2" />
-                      Job title
-                    </div>
-                    <div>
-                      <i className="ni education_hat mr-2" />
-                      School Alumni
-                    </div>
+
                     <hr className="my-4" />
                     <p>
                       About me information and wait to be updated
@@ -185,7 +186,7 @@ export default function EditProfile() {
                                   id="input-email"
                                   className="form-control form-control-alternative"
                                   defaultValue={user.email}
-                                  //ref={emailInput}
+                                  ref={emailInput}
                                 />
                               </div>
                             </div>
@@ -197,7 +198,7 @@ export default function EditProfile() {
                                   className="form-control-label"
                                   htmlFor="input-first-name"
                                 >
-                                  First name
+                                  Full name
                                 </label>
                                 <input
                                   type="text"
@@ -214,7 +215,7 @@ export default function EditProfile() {
                                   className="form-control-label"
                                   htmlFor="input-last-name"
                                 >
-                                  Last name
+                                  Age
                                 </label>
                                 <input
                                   type="text"

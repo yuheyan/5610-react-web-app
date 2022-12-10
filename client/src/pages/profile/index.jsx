@@ -12,6 +12,9 @@ export default function Profile() {
   const [user, setUser] = useState({});
   const username = useParams().username;
 
+  console.log(user)
+  console.log(username)
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`/users?username=${username}`);
@@ -43,9 +46,7 @@ export default function Profile() {
           <div className="container-fluid d-flex align-items-center">
             <div className="row">
               <div className="col-lg-7 col-md-10">
-
                 <button className="btn btn-info" onClick={() => history.push(`/edit-profile/${username}`)}>Edit Profile</button>
-                
               </div>
             </div>
           </div>
@@ -60,7 +61,9 @@ export default function Profile() {
                     <div className="card-profile-image">
                       <a href="#">
                         <img
-                          src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
+                          src={user.profilePicture
+                            ? PF + user.profilePicture
+                            : PF + "person/noAvatar.png"}
                           className="rounded-circle"
                         />
                       </a>
@@ -101,14 +104,7 @@ export default function Profile() {
                       <i className="ni location_pin mr-2" />
                       City, State/Country
                     </div>
-                    <div className="h5 mt-4">
-                      <i className="ni business_briefcase-24 mr-2" />
-                      Job title
-                    </div>
-                    <div>
-                      <i className="ni education_hat mr-2" />
-                      School Alumni
-                    </div>
+
                     <hr className="my-4" />
                     <p>
                       About me information and wait to be updated
@@ -145,14 +141,11 @@ export default function Profile() {
                                 >
                                   Username
                                 </label>
-                                <input
-                                  type="text"
+                                <p
                                   id="input-username"
-                                  className="form-control form-control-alternative"
-                                  placeholder="Username"
-                                  defaultValue={user.username}
-
-                                />
+                                  className="form-control form-control-alternative">
+                                  {user.username}
+                                </p>
                               </div>
                             </div>
                             <div className="col-lg-6">
@@ -163,12 +156,11 @@ export default function Profile() {
                                 >
                                   Email address
                                 </label>
-                                <input
-                                  type="email"
+                                <p
                                   id="input-email"
-                                  className="form-control form-control-alternative"
-                                  defaultValue={user.username}
-                                />
+                                  className="form-control form-control-alternative">
+                                    {user.email}
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -179,15 +171,13 @@ export default function Profile() {
                                   className="form-control-label"
                                   htmlFor="input-first-name"
                                 >
-                                  First name
+                                  Full name
                                 </label>
-                                <input
-                                  type="text"
+                                <p
                                   id="input-first-name"
-                                  className="form-control form-control-alternative"
-                                  placeholder="First name"
-                                  defaultValue=""
-                                />
+                                  className="form-control form-control-alternative">
+                                    waiting to get user's full name
+                                </p>
                               </div>
                             </div>
                             <div className="col-lg-6">
@@ -196,15 +186,13 @@ export default function Profile() {
                                   className="form-control-label"
                                   htmlFor="input-last-name"
                                 >
-                                  Last name
+                                  Age
                                 </label>
-                                <input
-                                  type="text"
-                                  id="input-last-name"
-                                  className="form-control form-control-alternative"
-                                  placeholder="Last name"
-                                  defaultValue=""
-                                />
+                                <p
+                                  id="input-first-name"
+                                  className="form-control form-control-alternative">
+                                    waiting to get user's age
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -224,13 +212,11 @@ export default function Profile() {
                                 >
                                   Address
                                 </label>
-                                <input
-                                  id="input-address"
-                                  className="form-control form-control-alternative"
-                                  placeholder="Home Address"
-                                  defaultValue=""
-                                  type="text"
-                                />
+                                <p
+                                  id="input-first-name"
+                                  className="form-control form-control-alternative">
+                                    waiting to get user's address
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -243,12 +229,11 @@ export default function Profile() {
                                 >
                                   City
                                 </label>
-                                <input
-                                  type="text"
-                                  id="input-city"
-                                  className="form-control form-control-alternative"
-                                  placeholder="City"
-                                />
+                                <p
+                                  id="input-first-name"
+                                  className="form-control form-control-alternative">
+                                    waiting to get user's city
+                                </p>
                               </div>
                             </div>
                             <div className="col-lg-4">
@@ -259,12 +244,11 @@ export default function Profile() {
                                 >
                                   Country
                                 </label>
-                                <input
-                                  type="text"
-                                  id="input-country"
-                                  className="form-control form-control-alternative"
-                                  placeholder="Country"
-                                />
+                                <p
+                                  id="input-first-name"
+                                  className="form-control form-control-alternative">
+                                    waiting to get user's country
+                                </p>
                               </div>
                             </div>
                             <div className="col-lg-4">
@@ -275,33 +259,19 @@ export default function Profile() {
                                 >
                                   Postal code
                                 </label>
-                                <input
-                                  type="number"
-                                  id="input-postal-code"
-                                  className="form-control form-control-alternative"
-                                  placeholder="Postal code"
-                                />
+                                <p
+                                  id="input-first-name"
+                                  className="form-control form-control-alternative">
+                                    waiting to get user's postal code
+                                </p>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <hr className="my-4" />
-                        {/* Description */}
-                        <h6 className="heading-small text-muted mb-4">About me</h6>
-                        <div className="pl-lg-4">
-                          <div className="form-group focused">
-                            <label>About Me</label>
-                            <textarea
-                              rows={4}
-                              className="form-control form-control-alternative"
-                              placeholder="A few words about you ..."
-                            />
-                          </div>
-                        </div>
+
                       </form>
                     </div>
                   </div>
-                  <input className="btn btn-info align-middle ms-3 mt-3 mb-3 text-color: white" type="submit" value="Save Profile"/>
                 </form>
             </div>
 
@@ -310,58 +280,11 @@ export default function Profile() {
       </div>
     </>
   );
-  
+
 }
 
 
 
-// original profile code
-
-// return (
-//   <>
-//     <Topbar />
-//     <div className="profile">
-//     <h1>Replace Side bar with Ads Location</h1>
-//       <div className="profileRight">
-//         <div className="profileRightTop">
-//           <div className="profileCover">
-//             <img
-//               className="profileCoverImg"
-//               src={
-//                 PF + "person/star-sign-cover.png"
-//               }
-//               alt="profileCover image not found"
-//             />
-//             <img
-//               className="profileUserImg"
-//               src={
-//                 user.profilePicture
-//                   ? PF + user.profilePicture
-//                   : PF + "person/noAvatar.png"
-//               }
-//               alt="profileUser image not found"
-//             />
-//           </div>
-//           <div className="profileInfo">
-//             <h4 className="profileName">user name: {user.username}</h4>
-//             <button onClick={() => history.push(`/edit-profile/${username}`)}>Edit Profile</button>
-//             <br></br>
-//             <br></br>
-//             <h4>General Information</h4>
-//             <br></br>
-//             <br></br>
-//             <ul className="generalInfo"  style ={{listStyle:'none'}}>
-//               <li>Email: {user.email}</li>
-//               <li>Gender: </li>
-//               <li>More information to be displayed</li>
-//             </ul>
-//           </div>
-//         </div>
-        
-//       </div>
-//     </div>
-//   </>
-// );
 
 
 
@@ -371,6 +294,10 @@ export default function Profile() {
 
 
 
+
+
+
+// original code
 
 
 // export default function Profile() {
@@ -385,7 +312,6 @@ export default function Profile() {
 //     };
 //     fetchUser();
 //   }, [username]);
-
 
 //   const history = useHistory();
 
