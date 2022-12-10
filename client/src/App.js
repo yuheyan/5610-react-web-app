@@ -21,7 +21,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          {user ? <Home /> : <Register />}
+          <Home />
         </Route>
 
         <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
@@ -31,8 +31,10 @@ function App() {
         <Route path="/search">
           <Search />
         </Route>
-        <Route path="/post">
-          <Post />
+        <Route path="/post">{user ? <Post /> : <Redirect to="/login" />}</Route>
+
+        <Route path="/profile/">
+          <Profile />
         </Route>
         <Route path="/profile/:username">
           <Profile />

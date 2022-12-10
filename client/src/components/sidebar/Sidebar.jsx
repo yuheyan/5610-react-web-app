@@ -38,14 +38,14 @@ export default function Sidebar() {
           <li
             onClick={useCallback(() => history.push("/admin"), [history])}
             className="sidebarListItem"
-            hidden={!user.isAdmin}
+            hidden={user == null || !user.isAdmin}
           >
             <SupervisorAccount className="sidebarIcon" />
             <span className="sidebarListItemText">Admin</span>
           </li>
         </ul>
         <hr className="sidebarHr" />
-        {user.isFree ? <label>ad fore free user</label> : ""}
+        {user == null || user.isFree ? <label>ad fore free user</label> : ""}
       </div>
     </div>
   );

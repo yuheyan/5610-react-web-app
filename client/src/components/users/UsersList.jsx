@@ -12,7 +12,6 @@ export default function UsersList() {
     const fetchUsers = async () => {
       const res = await fetchAllUsers();
       setUserData(res);
-      console.log(res);
     };
     fetchUsers();
   }, [user]);

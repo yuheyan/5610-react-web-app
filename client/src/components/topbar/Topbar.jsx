@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Topbar() {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -15,18 +16,29 @@ export default function Topbar() {
         </Link>
       </div>
       <div className="topbarRight">
-        <label>Welcome {user.username}</label>
-        <Link to={`/profile/${user.username}`}>
-          <img
-            src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
-            }
-            alt=""
-            className="topbarImg"
-          />
-        </Link>
+        <label>
+          {user != null ? (
+            <span>
+              Welcome {user.username}
+              <Link to={`/profile/${user.username}`}>
+                <img
+                  src={
+                    user.profilePicture
+                      ? PF + user.profilePicture
+                      : PF + "person/noAvatar.png"
+                  }
+                  alt=""
+                  className="topbarImg"
+                  style={{ marginLeft: "10px" }}
+                />{" "}
+              </Link>
+            </span>
+          ) : (
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <span style={{ color: "white" }}>Please Login</span>
+            </Link>
+          )}
+        </label>
       </div>
     </div>
   );

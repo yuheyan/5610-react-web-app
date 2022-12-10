@@ -37,8 +37,6 @@ export default function EditProfile() {
     });
   };
 
-  // console.log(username);
-
   return (
     <>
       <Topbar />
