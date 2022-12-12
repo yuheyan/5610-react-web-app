@@ -10,6 +10,7 @@ export const loginCall = async (userCredential, dispatch) => {
   }
 };
 
+
 export const constellationCall = async (constellation) => {
   try {
     const today = await axios.post(
@@ -39,3 +40,4 @@ export const updateUser = async (userId, userInfo) => {
   const res = await axios.put(`/users/${userId}`, userInfo);
   return res.data;
 };
+

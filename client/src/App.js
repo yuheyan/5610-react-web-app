@@ -5,6 +5,7 @@ import Register from "./pages/register";
 import Search from "./pages/search";
 import EditProfile from "./pages/edit-profile";
 import Home from "./pages/home";
+
 import {
   BrowserRouter as Router,
   Switch,
