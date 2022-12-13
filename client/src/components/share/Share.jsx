@@ -9,11 +9,13 @@ import {
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { ConstellationArray } from "../../context/Constellation";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const desc = useRef();
+  const constellationSelect = useRef();
   const [file, setFile] = useState(null);
 
   const submitHandler = async (e) => {
@@ -21,6 +23,7 @@ export default function Share() {
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
+      constellation: constellationSelect.current.value,
     };
     if (file) {
       const data = new FormData();
@@ -79,15 +82,16 @@ export default function Share() {
             </label>
             <div className="shareOption">
               <Label htmlColor="blue" className="shareIcon" />
-              <span className="shareOptionText">Tag</span>
-            </div>
-            <div className="shareOption">
-              <Room htmlColor="green" className="shareIcon" />
-              <span className="shareOptionText">Location</span>
-            </div>
-            <div className="shareOption">
-              <EmojiEmotions htmlColor="goldenrod" className="shareIcon" />
-              <span className="shareOptionText">Feelings</span>
+              <span className="shareOptionText">Select Constellation</span>
+              <select
+                name="constellation"
+                id="constellation"
+                ref={constellationSelect}
+              >
+                {ConstellationArray.map((e) => (
+                  <option value={e}>{e}</option>
+                ))}
+              </select>
             </div>
           </div>
           <button className="shareButton" type="submit">
