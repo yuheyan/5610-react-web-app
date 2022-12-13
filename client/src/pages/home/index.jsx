@@ -1,24 +1,10 @@
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Constellation from "../../components/constellation";
+import { ConstellationArray } from "../../context/Constellation";
 
 export default function Home() {
-  const constellation = [
-    "Aries",
-    "Taurus",
-    "Gemini",
-    "Cancer",
-    "Leo",
-    "Virgo",
-    "Libra",
-    "Scorpio",
-    "Sagittarius",
-    "Capricorn",
-    "Aquarius",
-    "Pisces",
-  ];
-  const randomElement =
-    constellation[Math.floor(Math.random() * constellation.length)];
+  const randomElement = ConstellationArray[Math.floor(Math.random() * 12)];
 
   return (
     <>
