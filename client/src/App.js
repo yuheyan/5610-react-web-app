@@ -44,12 +44,13 @@ function App() {
           <Detail />
         </Route>
         <Route path="/post">{user ? <Post /> : <Redirect to="/login" />}</Route>
+
         <Route path="/profile/:username">
           <Profile />
         </Route>
-        {/*<Route path="/profile/">*/}
-        {/*  <Profile />*/}
-        {/*</Route>*/}
+        <Route path="/profile/">
+          <Profile />
+        </Route>
 
         <Route path="/edit-profile/">
           <EditProfile />

@@ -10,8 +10,10 @@ export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser } = useContext(AuthContext);
   let [user, setUser] = useState({});
-  const username = useParams().username;
-
+  let username = useParams().username;
+  if (username == null){
+    username = currentUser.username;
+  }
 
   useEffect(() => {
     const fetchUser = async () => {

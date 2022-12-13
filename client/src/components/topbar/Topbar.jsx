@@ -20,7 +20,7 @@ export default function Topbar() {
           {user != null ? (
             <span>
               Welcome {user.username}
-              <Link to={`/profile/${user.username}`}>
+              <Link to={`/profile/`}>
                 <img
                   src={
                     user.profilePicture
