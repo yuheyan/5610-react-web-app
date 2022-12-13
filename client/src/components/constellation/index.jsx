@@ -7,10 +7,10 @@ export default function ({ constellation }) {
   if (!constellation) {
     return <></>;
   }
-  const [data, setDate] = useState({});
+  const [data, setData] = useState({});
   useEffect(() => {
     constellationCall(constellation).then((res) => {
-      setDate(res);
+      setData(res);
     });
   }, [constellation]);
 

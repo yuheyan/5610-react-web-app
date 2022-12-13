@@ -33,8 +33,8 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-      await post.deleteOne();
-      res.status(200).json("the post has been deleted");
+    await post.deleteOne();
+    res.status(200).json("the post has been deleted");
   } catch (err) {
     res.status(500).json(err);
   }
@@ -55,8 +55,18 @@ router.put("/:id/like", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//get a post
 
+// get all posts
+router.get("/:constellation", async (req, res) => {
+  try {
+    const post = await Post.find({ constellation: req.params.constellation });
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//get a post
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -71,6 +81,7 @@ router.get("/:id", async (req, res) => {
 router.get("/timeline/:userId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
+    console.log("test", currentUser);
     const userPosts = await Post.find({ userId: currentUser._id });
     const friendPosts = await Promise.all(
       currentUser.followings.map((friendId) => {
