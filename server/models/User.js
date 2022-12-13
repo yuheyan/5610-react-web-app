@@ -59,7 +59,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
-    from: {
+    country: {
       type: String,
       max: 50,
     },
@@ -72,6 +72,15 @@ const UserSchema = new mongoose.Schema(
       type: String,
       enum: ["Male", "Female", "Prefer not to respond"]
     },
+      fullName:{
+        type: String,
+        max: 50,
+      },
+      address:{
+        type: String,
+          max: 50,
+      }
+
   },
   { timestamps: true }
 );

@@ -1,15 +1,15 @@
 import "./profile.css";
 import Topbar from "../../components/topbar/Topbar";
-// import Sidebar from "../../components/sidebar/Sidebar";
-// import Feed from "../../components/feed/Feed";
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [user, setUser] = useState({});
+  const { user: currentUser } = useContext(AuthContext);
+  let [user, setUser] = useState({});
   const username = useParams().username;
 
 
@@ -20,6 +20,14 @@ export default function Profile() {
     };
     fetchUser();
   }, [username]);
+
+  // if (username == null){
+  //   user = currentUser;
+  // }
+
+  console.log(currentUser)
+  console.log(username);
+  console.log(user);
 
   const history = useHistory();
 
@@ -43,9 +51,13 @@ export default function Profile() {
           {/* Header container */}
           <div className="container-fluid d-flex align-items-center">
             <div className="row">
+              { currentUser == null ? (<span></span>) : (
+                  user.username !== currentUser.username ? (
+                      <span></span>
+                  ) : (
               <div className="col-lg-7 col-md-10">
-                <button className="btn btn-info" onClick={() => history.push(`/edit-profile/${username}`)}>Edit Profile</button>
-              </div>
+                <button className="btn btn-info" onClick={() => history.push(`/edit-profile/`)}>Edit Profile</button>
+              </div>))}
             </div>
           </div>
         </div>
@@ -70,42 +82,32 @@ export default function Profile() {
                 </div>
                 <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div className="d-flex justify-content-between">
-                    <a href="#" className="btn btn-sm btn-info mr-4">
-                      follow & unfollow
-                    </a>
+
                   </div>
                 </div>
                 <div className="card-body pt-0 pt-md-4">
                   <div className="row">
                     <div className="col">
                       <div className="card-profile-stats d-flex justify-content-center mt-md-5">
-                        <div>
-                          <span className="heading">22</span>
-                          <span className="description">Followers</span>
-                        </div>
-                        <div>
-                          <span className="heading">10</span>
-                          <span className="description">Following</span>
-                        </div>
-                        <div>
-                          <span className="heading">100</span>
-                          <span className="description">Reviews</span>
-                        </div>
+
                       </div>
                     </div>
                   </div>
                   <div className="text-center">
                     <h3>
-                      preferred name or username<span className="font-weight-light">, Age</span>
+                      {user.username}
+                      <span className="font-weight-light">,
+                        {user.age != null ? (<span>{user.age}</span>) : (<span>mystery age</span>)}
+                      </span>
                     </h3>
                     <div className="h5 font-weight-300">
                       <i className="ni location_pin mr-2" />
-                      City, State/Country
+                      {user.city != null ? (<span>{user.city}, {user.country}</span>) : (<span>Mars</span>)}
                     </div>
 
                     <hr className="my-4" />
                     <p>
-                      About me information and wait to be updated
+                      {user.desc != null ? (<span>{user.desc}</span>) : (<span>No information disclosed</span>)}
                     </p>
 
                   </div>
@@ -119,7 +121,7 @@ export default function Profile() {
                     <div className="card-header bg-white border-0">
                       <div className="row align-items-center">
                         <div className="col-8">
-                          <h3 className="mb-0">My account</h3>
+                          <h3 className="mb-0">Profile Details</h3>
                         </div>
                         
                       </div>
@@ -146,50 +148,60 @@ export default function Profile() {
                                 </p>
                               </div>
                             </div>
-                            <div className="col-lg-6">
-                              <div className="form-group">
-                                <label
-                                  className="form-control-label"
-                                  htmlFor="input-email"
-                                >
-                                  Email address
-                                </label>
-                                <p
-                                  id="input-email"
-                                  className="form-control form-control-alternative">
-                                    {user.email}
-                                </p>
-                              </div>
-                            </div>
+                            { currentUser == null ? (<span></span>) : (
+                                user.username !== currentUser.username ? (
+                                <span></span>
+                            ) : (
+                                <div className="col-lg-6">
+                                  <div className="form-group">
+                                    <label
+                                        className="form-control-label"
+                                        htmlFor="input-email"
+                                    >
+                                      Email address
+                                    </label>
+                                    <p
+                                        id="input-email"
+                                        className="form-control form-control-alternative">
+                                      {user.email}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
                           </div>
                           <div className="row">
-                            <div className="col-lg-6">
+                            { currentUser == null ? (<span></span>) : (
+                              user.username !== currentUser.username ? (
+                                <span></span>
+                            ) : (<div className="col-lg-6">
                               <div className="form-group focused">
                                 <label
-                                  className="form-control-label"
-                                  htmlFor="input-first-name"
+                                    className="form-control-label"
+                                    htmlFor="input-first-name"
                                 >
                                   Full name
                                 </label>
                                 <p
-                                  id="input-first-name"
-                                  className="form-control form-control-alternative">
-                                    waiting to get user's full name
+                                    id="input-first-name"
+                                    className="form-control form-control-alternative">
+                                  {user.fullName}
                                 </p>
                               </div>
                             </div>
+                            ))}
+
                             <div className="col-lg-6">
                               <div className="form-group focused">
                                 <label
                                   className="form-control-label"
-                                  htmlFor="input-last-name"
+                                  htmlFor="input-age"
                                 >
                                   Age
                                 </label>
                                 <p
-                                  id="input-first-name"
+                                  id="input-age"
                                   className="form-control form-control-alternative">
-                                    waiting to get user's age
+                                  {user.age}
                                 </p>
                               </div>
                             </div>
@@ -201,23 +213,28 @@ export default function Profile() {
                           Contact information
                         </h6>
                         <div className="pl-lg-4">
-                          <div className="row">
-                            <div className="col-md-12">
-                              <div className="form-group focused">
-                                <label
-                                  className="form-control-label"
-                                  htmlFor="input-address"
-                                >
-                                  Address
-                                </label>
-                                <p
-                                  id="input-first-name"
-                                  className="form-control form-control-alternative">
-                                    waiting to get user's address
-                                </p>
-                              </div>
-                            </div>
-                          </div>
+                          { currentUser == null ? (<span></span>) : (
+                              user.username !== currentUser.username ? (
+                                <span></span>) : (
+                                <div className="row">
+                                  <div className="col-md-12">
+                                    <div className="form-group focused">
+                                      <label
+                                          className="form-control-label"
+                                          htmlFor="input-address"
+                                      >
+                                        Address
+                                      </label>
+                                      <p
+                                          id="input-first-name"
+                                          className="form-control form-control-alternative">
+                                        {user.address}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+
                           <div className="row">
                             <div className="col-lg-4">
                               <div className="form-group focused">
@@ -230,7 +247,7 @@ export default function Profile() {
                                 <p
                                   id="input-first-name"
                                   className="form-control form-control-alternative">
-                                    waiting to get user's city
+                                  {user.city}
                                 </p>
                               </div>
                             </div>
@@ -245,24 +262,12 @@ export default function Profile() {
                                 <p
                                   id="input-first-name"
                                   className="form-control form-control-alternative">
-                                    waiting to get user's country
+                                  {user.country}
                                 </p>
                               </div>
                             </div>
                             <div className="col-lg-4">
-                              <div className="form-group">
-                                <label
-                                  className="form-control-label"
-                                  htmlFor="input-country"
-                                >
-                                  Postal code
-                                </label>
-                                <p
-                                  id="input-first-name"
-                                  className="form-control form-control-alternative">
-                                    waiting to get user's postal code
-                                </p>
-                              </div>
+
                             </div>
                           </div>
                         </div>

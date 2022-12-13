@@ -64,7 +64,7 @@ export default function EditProfile() {
             <div className="row">
               <div className="col-lg-7 col-md-10">
                 <a href="#!" className="btn btn-info">
-                  Save profile waited to be changed as a button
+                  Save profile
                 </a>
               </div>
             </div>
@@ -91,27 +91,14 @@ export default function EditProfile() {
                 </div>
                 <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div className="d-flex justify-content-between">
-                    <a href="#" className="btn btn-sm btn-info mr-4">
-                      follow & unfollow
-                    </a>
+
                   </div>
                 </div>
                 <div className="card-body pt-0 pt-md-4">
                   <div className="row">
                     <div className="col">
                       <div className="card-profile-stats d-flex justify-content-center mt-md-5">
-                        <div>
-                          <span className="heading">22</span>
-                          <span className="description">Followers</span>
-                        </div>
-                        <div>
-                          <span className="heading">10</span>
-                          <span className="description">Following</span>
-                        </div>
-                        <div>
-                          <span className="heading">100</span>
-                          <span className="description">Reviews</span>
-                        </div>
+
                       </div>
                     </div>
                   </div>
