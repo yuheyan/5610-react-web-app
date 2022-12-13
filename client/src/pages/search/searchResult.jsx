@@ -27,9 +27,9 @@ export default function SearchResult() {
         <Sidebar />
         <div className="topbarCenter">
           <div className="container" style={{ padding: "15px", width: "80%" }}>
-            {result.map((e) => (
-              <ConstellatioBrief constellation={e} />
-            ))}
+            {result.length == 0
+              ? "No result found"
+              : result.map((e) => <ConstellatioBrief constellation={e} />)}
           </div>
         </div>
       </div>

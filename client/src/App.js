@@ -37,7 +37,7 @@ function App() {
           <SearchResult />
         </Route>
         <Route path="/search">
-          <Search />
+          {user ? <Search /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/detail/:constellation">
