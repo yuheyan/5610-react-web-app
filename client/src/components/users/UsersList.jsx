@@ -23,29 +23,86 @@ export default function UsersList() {
     } catch (err) {}
   };
 
+  const changeHandler = async(event) => {
+    const username = event.target.value;
+    let free = false;
+    let vip = false;
+    let admin = false;
+    if (event.target.id === "free") {
+      free = true;
+    }
+    if (event.target.id === "vip") {
+      vip = true;
+    }
+    if (event.target.id === "admin") {
+      admin = true;
+    }
+    const res = await axios.get(`/users?username=${username}`);
+    const userInfo = {
+      ...res.data,
+      isFree: free,
+      isVip: vip,
+      isAdmin: admin
+    }
+    try {
+      await axios.put(`/users/${userInfo._id}`, userInfo);
+      window.location.reload();
+    } catch (err) {}
+  };
+
   return (
-    <div className="users">
-      <div className="usersWrapper">
-        <table className="table">
-          <tr>
-            <th className="th td">username</th>
-            <th className="th td">email</th>
-            <th className="th td">delete</th>
-          </tr>
-          {userData.map((row) => (
+      <div className="users">
+        <div className="usersWrapper">
+          <table className="table">
             <tr>
-              <td className="td">{row.username}</td>
-              <td className="td">{row.email}</td>
-              <td className="td">
-                <DeleteForever
-                  fontSize="large"
-                  onClick={() => deleteHandler(row._id)}
-                />
-              </td>
+              <th className="th td">Username</th>
+              <th className="th td">Email</th>
+              <th className="th td">User Identity</th>
+              <th className="th td">Delete</th>
             </tr>
-          ))}
-        </table>
+            {userData.map((row) => (
+                <tr>
+                  <td className="td">{row.username}</td>
+                  <td className="td">{row.email}</td>
+                  <td className="td">
+                    <input
+                        type="radio"
+                        id="free"
+                        name="user_role"
+                        value={row.username}
+                        checked={row.isFree}
+                        onChange={changeHandler}
+                    />
+                    <label htmlFor="free">Free User</label>
+                    <input
+                        type="radio"
+                        id="vip"
+                        name="user_role"
+                        value={row.username}
+                        checked = {row.isVip}
+                        onChange={changeHandler}
+                    />
+                    <label htmlFor="vip">VIP User</label>
+                    <input
+                        type="radio"
+                        id="admin"
+                        name="user_role"
+                        value={row.username}
+                        checked={row.isAdmin}
+                        onChange={changeHandler}
+                    />
+                    <label htmlFor="admin">Administer</label>
+                    </td>
+                  <td className="td">
+                    <DeleteForever
+                        fontSize="large"
+                        onClick={() => deleteHandler(row._id)}
+                    />
+                  </td>
+                </tr>
+            ))}
+          </table>
+        </div>
       </div>
-    </div>
   );
 }
