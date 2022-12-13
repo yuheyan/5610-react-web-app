@@ -25,9 +25,6 @@ export default function Profile() {
   //   user = currentUser;
   // }
 
-  console.log(currentUser)
-  console.log(username);
-  console.log(user);
 
   const history = useHistory();
 
@@ -69,7 +66,7 @@ export default function Profile() {
                 <div className="row justify-content-center">
                   <div className="col-lg-3 order-lg-2">
                     <div className="card-profile-image">
-                      <a href="#">
+                      <a >
                         <img
                           src={user.profilePicture
                             ? PF + user.profilePicture

@@ -1,6 +1,6 @@
 import "./edit-profile.css";
 import Topbar from "../../components/topbar/Topbar";
-import { useContext, useEffect, useRef } from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import axios from "axios";
 // import { Label, SettingsInputAntennaTwoTone } from "@material-ui/icons";
 import {updateUser} from "../../apiCalls";
@@ -10,36 +10,51 @@ import { useHistory } from "react-router-dom";
 
 export default function EditProfile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const { user } = useContext(AuthContext);
+  const history = useHistory();
+  const { user: currentUser } = useContext(AuthContext);
+  const username = currentUser.username;
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/users?username=${username}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [username]);
 
-  //create new input field ref
-  const usernameInput = useRef();
-  const emailInput = useRef();
-  // const passwordInput = useRef();
-  // const genderInput = useRef();
+  console.log(user);
 
-  // show the initial value of the user information
-  
-  // useEffect(() => {
-  //   usernameInput.current.value = user.username;
-  //   emailInput.current.value = user.email;
-  //   passwordInput.current.value = user.password;
-  //   genderInput.current.value = user.gender;
-  // }, [user]);
-
+  const fullNameInput = useRef();
+  const ageInput = useRef();
+  const addressInput = useRef();
+  const cityInput = useRef();
+  const countryInput = useRef();
+  const descInput = useRef();
 
   // update the user information on click
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    
-    updateUser(user._id, {
-        userId:user._id,
-        username:usernameInput.current.value,
-        email:emailInput.current.value,
-        // passwordInput:passwordInput.current.value,
-        // genderInput:genderInput.current.value,
-      });
+
+    const userInfo = {
+      ...user,
+      fullName: fullNameInput.current.value,
+      age: ageInput.current.value,
+      address: addressInput.current.value,
+      city: cityInput.current.value,
+      country: countryInput.current.value,
+      desc: descInput.current.value,
+    }
+    console.log(userInfo);
+    console.log(user._id);
+    try {
+      await axios.put(`/users/${user._id}`, userInfo);
+      history.push(`/profile/${user.username}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
+
+
 
 
   return (
@@ -63,7 +78,7 @@ export default function EditProfile() {
           <div className="container-fluid d-flex align-items-center">
             <div className="row">
               <div className="col-lg-7 col-md-10">
-                <a href="#!" className="btn btn-info">
+                <a onClick={handleSubmit} className="btn btn-info">
                   Save profile
                 </a>
               </div>
@@ -104,16 +119,19 @@ export default function EditProfile() {
                   </div>
                   <div className="text-center">
                     <h3>
-                      preferred name or username<span className="font-weight-light">, Age</span>
+                      {user.username}
+                      <span className="font-weight-light">,
+                        {user.age != null ? (<span>{user.age}</span>) : (<span>mystery age</span>)}
+                      </span>
                     </h3>
                     <div className="h5 font-weight-300">
                       <i className="ni location_pin mr-2" />
-                      City, State/Country
+                      {user.city != null ? (<span>{user.city}, {user.country}</span>) : (<span>Mars</span>)}
                     </div>
 
                     <hr className="my-4" />
                     <p>
-                      About me information and wait to be updated
+                      {user.desc != null ? (<span>{user.desc}</span>) : (<span>No information disclosed</span>)}
                     </p>
 
                   </div>
@@ -148,12 +166,12 @@ export default function EditProfile() {
                                   Username
                                 </label>
                                 <input
+                                  readOnly
                                   type="text"
                                   id="input-username"
                                   className="form-control form-control-alternative"
                                   placeholder="Username"
                                   defaultValue={user.username}
-                                  ref={usernameInput}
                                 />
                               </div>
                             </div>
@@ -166,11 +184,11 @@ export default function EditProfile() {
                                   Email address
                                 </label>
                                 <input
+                                  readOnly
                                   type="email"
                                   id="input-email"
                                   className="form-control form-control-alternative"
                                   defaultValue={user.email}
-                                  ref={emailInput}
                                 />
                               </div>
                             </div>
@@ -188,8 +206,9 @@ export default function EditProfile() {
                                   type="text"
                                   id="input-first-name"
                                   className="form-control form-control-alternative"
-                                  placeholder="First name"
-                                  defaultValue=""
+                                  placeholder="Full name"
+                                  defaultValue={user.fullName}
+                                  ref={fullNameInput}
                                 />
                               </div>
                             </div>
@@ -202,11 +221,12 @@ export default function EditProfile() {
                                   Age
                                 </label>
                                 <input
-                                  type="text"
+                                  type="number"
                                   id="input-last-name"
                                   className="form-control form-control-alternative"
-                                  placeholder="Last name"
-                                  defaultValue=""
+                                  placeholder="Age"
+                                  defaultValue={user.age}
+                                  ref={ageInput}
                                 />
                               </div>
                             </div>
@@ -231,8 +251,9 @@ export default function EditProfile() {
                                   id="input-address"
                                   className="form-control form-control-alternative"
                                   placeholder="Home Address"
-                                  defaultValue=""
+                                  defaultValue={user.address}
                                   type="text"
+                                  ref={addressInput}
                                 />
                               </div>
                             </div>
@@ -251,6 +272,8 @@ export default function EditProfile() {
                                   id="input-city"
                                   className="form-control form-control-alternative"
                                   placeholder="City"
+                                  defaultValue={user.city}
+                                  ref={cityInput}
                                 />
                               </div>
                             </div>
@@ -267,24 +290,13 @@ export default function EditProfile() {
                                   id="input-country"
                                   className="form-control form-control-alternative"
                                   placeholder="Country"
+                                  defaultValue={user.country}
+                                  ref={countryInput}
                                 />
                               </div>
                             </div>
                             <div className="col-lg-4">
-                              <div className="form-group">
-                                <label
-                                  className="form-control-label"
-                                  htmlFor="input-country"
-                                >
-                                  Postal code
-                                </label>
-                                <input
-                                  type="number"
-                                  id="input-postal-code"
-                                  className="form-control form-control-alternative"
-                                  placeholder="Postal code"
-                                />
-                              </div>
+
                             </div>
                           </div>
                         </div>
@@ -298,13 +310,17 @@ export default function EditProfile() {
                               rows={4}
                               className="form-control form-control-alternative"
                               placeholder="A few words about you ..."
+                              defaultValue={user.desc}
+                              ref={descInput}
                             />
                           </div>
                         </div>
                       </form>
                     </div>
                   </div>
-                  <input className="btn btn-info align-middle ms-3 mt-3 mb-3 text-color: white" type="submit" value="Save Profile"/>
+                  <a onClick={handleSubmit} className="btn btn-info align-middle ms-3 mt-3 mb-3 text-color: white">
+                    Save profile
+                  </a>
                 </form>
             </div>
 

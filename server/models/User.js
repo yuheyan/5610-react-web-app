@@ -79,6 +79,10 @@ const UserSchema = new mongoose.Schema(
       address:{
         type: String,
           max: 50,
+      },
+      age:{
+        type: Number,
+
       }
 
   },
