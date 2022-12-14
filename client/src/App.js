@@ -6,6 +6,7 @@ import Search from "./pages/search/search";
 import SearchResult from "./pages/search/searchResult";
 import EditProfile from "./pages/edit-profile";
 import Home from "./pages/home";
+import UserPost from "./pages/user-post";
 
 import {
   BrowserRouter as Router,
@@ -45,6 +46,10 @@ function App() {
         </Route>
         <Route path="/post">{user ? <Post /> : <Redirect to="/login" />}</Route>
 
+        <Route path="/profile/:username/posts">
+          <UserPost />
+        </Route>
+
         <Route path="/profile/:username">
           <Profile />
         </Route>
@@ -58,6 +63,8 @@ function App() {
         <Route path="/admin">
           <Users />
         </Route>
+
+
       </Switch>
     </Router>
   );
