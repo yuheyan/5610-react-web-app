@@ -22,7 +22,6 @@ export default function EditProfile() {
     fetchUser();
   }, [username]);
 
-  console.log(user);
 
   const fullNameInput = useRef();
   const ageInput = useRef();

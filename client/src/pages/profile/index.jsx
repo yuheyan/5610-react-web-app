@@ -23,9 +23,6 @@ export default function Profile() {
     fetchUser();
   }, [username]);
 
-  // if (username == null){
-  //   user = currentUser;
-  // }
 
 
   const history = useHistory();
@@ -276,8 +273,10 @@ export default function Profile() {
                   </div>
                 </form>
             </div>
-
           </div>
+          <a onClick={() => history.push(`/profile/${user.username}/posts/`)} className="btn btn-info align-middle ms-3 mt-3 mb-3 text-color: white">
+            See this user's posts
+          </a>
         </div>
       </div>
     </>
