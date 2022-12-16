@@ -45,7 +45,7 @@ export default function Sidebar() {
           </li>
         </ul>
         <hr className="sidebarHr" />
-        {user == null || user.isFree ? <label>ad fore free user</label> : ""}
+        {user == null || user.isFree ? <img src="https://campaignoutsider.files.wordpress.com/2014/02/screen-shot-2014-02-25-at-1-08-35-am.png"/>: ""}
       </div>
     </div>
   );
