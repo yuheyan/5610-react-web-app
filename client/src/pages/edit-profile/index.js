@@ -317,7 +317,7 @@ export default function EditProfile() {
                       </form>
                     </div>
                   </div>
-                  <a onClick={handleSubmit} className="btn btn-info align-middle ms-3 mt-3 mb-3 text-color: white">
+                  <a onClick={handleSubmit} className="btn btn-info align-middle ms-3 mt-3 mb-3 text-color:white">
                     Save profile
                   </a>
                 </form>

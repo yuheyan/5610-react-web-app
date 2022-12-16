@@ -1,12 +1,17 @@
 import "./topbar.css";
 import { Person, Chat, Notifications } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
+  const history = useHistory();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const handleLogout = ()=>{
+        dispatch({ type: "LOGOUT" })
+        history.push(`/`);
+    }
 
   return (
     <div className="topbarContainer">
@@ -19,8 +24,9 @@ export default function Topbar() {
         <label>
           {user != null ? (
             <span>
+                <Link to={`/profile/`} style={{color:'white'}}>
               Welcome {user.username}
-              <Link to={`/profile/`}>
+
                 <img
                   src={
                     user.profilePicture
@@ -32,7 +38,12 @@ export default function Topbar() {
                   style={{ marginLeft: "10px" }}
                 />{" "}
               </Link>
+
+              <button className="btn btn-info align-middle" style={{marginLeft: 2+'em'}}
+                  onClick={() => handleLogout()}
+              >Logout</button>
             </span>
+
           ) : (
             <Link to="/login" style={{ textDecoration: "none" }}>
               <span style={{ color: "white" }}>Please Login</span>
